@@ -33,7 +33,9 @@ const storagevideo = multer.diskStorage({
 });
 
 const uploadvideo = multer({ storagevideo });
-
+app.get('/', (req, res) => {
+  res.send("hello")
+})
 
 // students login route
 app.post("/studentsLogin", (req, res) => {
