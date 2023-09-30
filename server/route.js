@@ -18,8 +18,8 @@ const config = {
 route.post("/pay", async (req, res) => {
 
     // chapa redirect you to this url when payment is successful
-   const CALLBACK_URL = "http://localhost:4000/api/verify-payment/"
-   const RETURN_URL = "http://localhost:4000/api/payment-success/"
+   const CALLBACK_URL = "https://sms-q762.onrender.com/api/verify-payment/"
+   const RETURN_URL = "https://sms-q762.onrender.com/api/payment-success/"
 
    // a unique reference given to every transaction
    const TEXT_REF = "tx-sms-" + Date.now()
