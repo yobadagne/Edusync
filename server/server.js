@@ -39,25 +39,52 @@ app.get('/', (req, res) => {
 
 // students login route
 app.post("/studentsLogin", (req, res) => {
-  //your code here
+  const {email, password} = req.body;
+  const sql = "SELECT * FROM studentstable WHERE email = ?";
+  db.query(sql, [email], (err, data)=>{
+    if (err) console.log(err)
+    else {
+      if(data.password == password)
+      {res.send("you are successfully loged in");}
+      else res.send("please login");
+  }
+  })
 });
 
 // teachers login route
 app.post("/teachersLogin", (req, res) => {
-  //your code here
+  const {email, password} = req.body;
+  const sql = "SELECT * FROM teacherstable WHERE email = ?";
+  db.query(sql, [email], (err, data)=>{
+    if (err) console.log(err)
+    else {
+      if(data.password == password)
+      {res.send("you are successfully loged in");}
+      else res.send("please login");
+  }
+  })
 });
 
 // students signup route
 app.post("/studentsSignUp", (req, res) => {
- //your code here
+ 
+ const {firstName , lastName, gender, phone, email, grade ,password} = req.body;
+ const sql = "INSERT INTO studentstable (firstName , lastName, gender, phone, email, grade,password) VALUES (? , ?, ?, ?, ?, ?, ?)";
+ db.query(sql, [firstName , lastName, gender, phone, email, grade, password], (err, data)=>{
+  if (err) console.log(err)
+  else res.send("A new student is successfully registered");
+ })
 });
 
 // teachers signup route
-app.post("/teachesrSignUp", (req, res) => {
- //your code here
+app.post("/teachersSignUp", (req, res) => {
+  const {firstName , lastName, gender, phone, email, password } = req.body;
+ const sql = "INSERT INTO teacherstable (firstName , lastName, gender, phone, email, password) VALUES (? , ?, ?, ?, ?,?)";
+ db.query(sql, [firstName , lastName, gender, phone, email, password], (err, data)=>{
+  if (err) console.log(err)
+  else res.send("A new teacher is successfully registered");
+ })
 });
-
-
 
 // // Create an endpoint to upload the pdf file to mysql
 app.post("/uploadpdf", uploadpdf.single("file"), (req, res) => {
