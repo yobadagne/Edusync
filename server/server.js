@@ -54,7 +54,7 @@ app.post("/studentsLogin", (req, res) => {
 // teachers login route
 app.post("/teachersLogin", (req, res) => {
   const {email, password} = req.body;
-  const sql = "SELECT * FROM teacherstable WHERE email = ?";
+  const sql = "SELECT * FROM teachersstable WHERE email = ?";
   db.query(sql, [email], (err, data)=>{
     if (err) console.log(err)
     else {
@@ -79,7 +79,7 @@ app.post("/studentsSignUp", (req, res) => {
 // teachers signup route
 app.post("/teachersSignUp", (req, res) => {
   const {firstName , lastName, gender, phone, email, password } = req.body;
- const sql = "INSERT INTO teacherstable (firstName , lastName, gender, phone, email, password) VALUES (? , ?, ?, ?, ?,?)";
+ const sql = "INSERT INTO teachersstable (firstName , lastName, gender, phone, email, password) VALUES (? , ?, ?, ?, ?,?)";
  db.query(sql, [firstName , lastName, gender, phone, email, password], (err, data)=>{
   if (err) console.log(err)
   else res.send("A new teacher is successfully registered");
